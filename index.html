@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RONDAS CAMPESINAS DE LA REGIÓN LORETO</title>
+    <!-- FONT AWESOME PARA LOS ICONOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables de colores y estilos globales */
+        :root {
+            --rojo-principal: #1cb74b;
+            --rojo-secundario: #86d32f;
+            --rojo-claro: #bdff52;
+            --amarillo: #ffc107;
+            --blanco: #ffffff;
+            --gris-claro: #f5f5f5;
+            --gris-oscuro: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--gris-claro);
+            color: var(--gris-oscuro);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Sección de bienvenida con foto */
+        .welcome-section {
+            background: linear-gradient(135deg, var(--rojo-principal) 0%, var(--rojo-secundario) 100%);
+            color: var(--blanco);
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 2rem;
+        }
+        
+        .welcome-text {
+            flex: 1;
+            z-index: 2;
+        }
+        
+        .welcome-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .welcome-text p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .welcome-image {
+            flex: 0 0 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+        
+        .persona-img {
+            width: 280px;
+            height: 350px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+            border-radius: 10px;
+        }
+        
+        /* Estilos del encabezado */
+        header {
+            background: linear-gradient(to right, var(--rojo-principal), var(--rojo-secundario));
+            color: var(--blanco);
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background-color: var(--blanco);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            overflow: hidden;
+            border: 2px solid var(--rojo-principal);
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 5px;
+        }
+        
+        .titulo-rondas h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .titulo-rondas p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .eslogan {
+            background-color: var(--blanco);
+            color: var(--rojo-principal);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 0.5rem;
+            width: 100%;
+            border: 2px solid var(--rojo-principal);
+            position: relative;
+            z-index: 10;
+        }
+        
+        /* Contenedor de banderas animadas */
+        .banderas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .bandera {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(to right, #d91010 33%, #ffffff 33%, #ffffff 66%, #D91023 66%);
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            animation: caer linear forwards;
+        }
+        
+        @keyframes caer {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Navegación */
+        nav {
+            background-color: var(--rojo-principal);
+            width: 100%;
+            position: relative;
+            z-index: 20;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+            justify-content: space-around;
+            padding: 0.8rem 0;
+        }
+        
+        .menu li {
+            margin: 0 0.5rem;
+        }
+        
+        .menu a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .menu a:hover {
+            background-color: var(--blanco);
+            color: var(--rojo-principal);
+            border-radius: 4px;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--blanco);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Banner principal */
+        .banner {
+            background: linear-gradient(rgba(46, 183, 28, 0.8), rgba(128, 97, 97, 0.8));
+            background-size: cover;
+            color: var(--blanco);
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        
+        .banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .banner p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--blanco);
+            color: var(--rojo-principal);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .btn:hover {
+            background-color: var(--rojo-principal);
+            color: var(--blanco);
+            border-color: var(--blanco);
+            transform: translateY(-3px);
+        }
+        
+        /* SECCIÓN DE RONDAS DE SEGURIDAD - MODIFICADA PARA FOTOS MIXTAS */
+        #rondas-seguridad {
+            padding: 4rem 1rem;
+            background-color: var(--gris-claro);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .rondas-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .rondas-header h2 {
+            font-size: 2.5rem;
+            color: var(--rojo-principal);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .rondas-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--rojo-principal), var(--rojo-secundario));
+            border-radius: 2px;
+        }
+        
+        .rondas-header p {
+            font-size: 1.2rem;
+            color: var(--gris-oscuro);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Galería modificada para 5 horizontales + 1 vertical */
+        .galeria-rondas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        
+        /* Estilo para fotos horizontales (5 primeras) */
+        .foto-card.horizontal {
+            grid-column: span 1;
+        }
+        
+        /* Estilo para foto vertical (la última) */
+        .foto-card.vertical {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+        
+        .foto-card {
+            background-color: var(--blanco);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .foto-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(28, 183, 75, 0.15);
+            border-color: var(--rojo-principal);
+        }
+        
+        /* Contenedor de imagen - Diferentes alturas para horizontal/vertical */
+        .foto-img.horizontal-img {
+            height: 200px;
+        }
+        
+        .foto-img.vertical-img {
+            height: 420px;
+        }
+        
+        .foto-img {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #f8f9fa;
+        }
+        
+        .foto-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+        
+        .foto-card:hover .foto-img img {
+            transform: scale(1.05);
+        }
+        
+        .foto-info {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .foto-info h3 {
+            color: var(--rojo-principal);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .foto-descripcion {
+            color: var(--gris-oscuro);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        /* SECCIÓN DE VIDEOS - NUEVA SECCIÓN */
+        #videos-rondas {
+            padding: 3rem 1rem;
+            background-color: var(--rojo-claro);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .videos-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .videos-header h2 {
+            font-size: 2.5rem;
+            color: var(--rojo-principal);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .videos-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--rojo-principal), var(--rojo-secundario));
+            border-radius: 2px;
+        }
+        
+        .videos-header p {
+            font-size: 1.2rem;
+            color: var(--gris-oscuro);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .videos-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            padding: 0 20px;
+        }
+        
+        .video-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            background-color: var(--blanco);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(28, 183, 75, 0.2);
+            border-color: var(--rojo-principal);
+        }
+        
+        /* ESTILOS PARA VIDEOS LOCALES */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* Relación 16:9 */
+            overflow: hidden;
+            background-color: #000;
+        }
+        
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .video-info h3 {
+            color: var(--rojo-principal);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .video-info p {
+            color: var(--gris-oscuro);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Controles de video personalizados */
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .video-wrapper:hover .video-controls {
+            opacity: 1;
+        }
+        
+        .video-controls button {
+            background: rgba(255,255,255,0.8);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--rojo-principal);
+            transition: all 0.3s;
+        }
+        
+        .video-controls button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .video-time {
+            color: white;
+            font-size: 14px;
+            margin: 0 10px;
+        }
+        
+        /* Secciones principales */
+        section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--rojo-principal);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--rojo-principal);
+            margin: 0.5rem auto;
+        }
+        
+        /* Contacto */
+        .contacto-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .info-contacto {
+            background-color: var(--rojo-principal);
+            color: var(--blanco);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .info-contacto h3 {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contacto-icon {
+            background-color: var(--blanco);
+            color: var(--rojo-principal);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+        
+        .form-contacto {
+            background-color: var(--blanco);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--rojo-principal);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--rojo-principal);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Mensajes de alerta */
+        .alert {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* FOOTER CORREGIDO - SOLO FACEBOOK Y TIKTOK */
+        footer {
+            background-color: var(--rojo-principal);
+            color: var(--blanco);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: var(--amarillo);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: var(--blanco);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            color: var(--amarillo);
+            text-decoration: underline;
+        }
+        
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon.facebook { 
+            background-color: #1877F2; 
+        }
+        
+        .social-icon.tiktok { 
+            background-color: #000000; 
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .copyright {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Estilos responsivos */
+        @media (max-width: 1024px) {
+            .galeria-rondas {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .foto-card.vertical {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+            
+            .foto-img.vertical-img {
+                height: 300px;
+            }
+            
+            .videos-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .video-card {
+                max-width: 90%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .welcome-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .welcome-text h1 {
+                font-size: 2rem;
+            }
+            
+            .welcome-image {
+                flex: 0 0 auto;
+                order: -1;
+            }
+            
+            .persona-img {
+                width: 200px;
+                height: 250px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-section {
+                flex-direction: column;
+                margin-bottom: 1rem;
+            }
+            
+            .logo {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .menu {
+                flex-direction: column;
+                display: none;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .menu li {
+                margin: 0.5rem 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .banner h2 {
+                font-size: 1.5rem;
+            }
+            
+            .banner p {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            .bandera {
+                width: 30px;
+                height: 45px;
+            }
+            
+            .footer-social {
+                gap: 1.5rem;
+            }
+            
+            .social-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            /* Responsivo para galería */
+            .galeria-rondas {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 10px;
+            }
+            
+            .foto-card.vertical {
+                grid-column: span 1;
+            }
+            
+            .foto-img.horizontal-img {
+                height: 180px;
+            }
+            
+            .foto-img.vertical-img {
+                height: 250px;
+            }
+            
+            .rondas-header h2 {
+                font-size: 2rem;
+            }
+            
+            .rondas-header p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+            
+            /* Responsivo para videos */
+            .videos-header h2 {
+                font-size: 2rem;
+            }
+            
+            .videos-header p {
+                font-size: 1rem;
+            }
+            
+            .video-card {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .welcome-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .persona-img {
+                width: 180px;
+                height: 220px;
+            }
+            
+            .titulo-rondas h1 {
+                font-size: 1.2rem;
+            }
+            
+            .banner {
+                padding: 2rem 1rem;
+            }
+            
+            .bandera {
+                width: 25px;
+                height: 40px;
+            }
+            
+            .footer-logo {
+                font-size: 1.5rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .footer-social {
+                gap: 1.2rem;
+            }
+            
+            .social-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+            
+            /* Responsivo móvil para galería */
+            .galeria-rondas {
+                gap: 15px;
+            }
+            
+            .foto-img.horizontal-img {
+                height: 160px;
+            }
+            
+            .foto-img.vertical-img {
+                height: 220px;
+            }
+            
+            .foto-info {
+                padding: 15px;
+            }
+            
+            .foto-info h3 {
+                font-size: 1.2rem;
+            }
+            
+            .rondas-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            /* Responsivo móvil para videos */
+            .videos-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sección de bienvenida con foto -->
+    <div class="welcome-section">
+        <div class="welcome-container">
+            <div class="welcome-text">
+                <h1>Rondas Campesinas REGIÓN LORETO</h1>
+                <p>Defendiendo nuestras tierras, conservando nuestras tradiciones y promoviendo el desarrollo sostenible.</p>
+                <a href="#rondas-seguridad" class="btn">Ver Rondas de Seguridad</a>
+            </div>
+            <div class="welcome-image">
+                <img src="imagenes/imagen/rondalogo.png" alt="LOGO RONDAS" class="persona-img">
+            </div>
+        </div>
+    </div>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="imagenes/imagen/rondalogo.png" alt="Logo">
+                </div>
+                <div class="titulo-rondas">
+                    <h1>SOMOS LA RONDA CAMPESINA</h1>
+                    <p>A SERVICIO DE LA POBLACIÓN VULNERABLE</p>
+                </div>
+            </div>
+            <div class="eslogan">
+                RONDAS CAMPESINAS DE LA REGIÓN LORETO
+            </div>
+        </div>
+        
+        <!-- Contenedor de banderas animadas -->
+        <div class="banderas-container" id="banderasContainer"></div>
+        
+        <!-- Navegación -->
+        <nav>
+            <div class="nav-container">
+                <button class="menu-toggle">☰</button>
+                <ul class="menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#rondas-seguridad">Rondas de Seguridad</a></li>
+                    <li><a href="#videos-rondas">Videos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Banner principal -->
+    <section id="inicio" class="banner">
+        <h2>Nuestra Misión</h2>
+        <p>Ser una organización líder en el desarrollo rural sostenible de Loreto, reconocida por su compromiso con la protección del medio ambiente y la defensa de los derechos campesinos.</p>
+        <a href="#rondas-seguridad" class="btn">Ver nuestras rondas</a>
+    </section>
+
+    <!-- SECCIÓN DE RONDAS DE SEGURIDAD - CON FOTOS MIXTAS -->
+    <section id="rondas-seguridad" class="fade-in">
+        <div class="rondas-header">
+            <h2><i class="fas fa-shield-alt"></i> RONDAS DE SEGURIDAD</h2>
+            <p>Conoce nuestras actividades de seguridad comunitaria que realizamos para proteger a nuestras comunidades y mantener el orden en nuestras tierras.</p>
+        </div>
+        
+        <!-- GALERÍA DE 6 FOTOS - 5 HORIZONTALES + 1 VERTICAL -->
+        <div class="galeria-rondas" id="galeria-rondas">
+            <!-- Foto 1 - Horizontal -->
+            <div class="foto-card horizontal">
+                <div class="foto-img horizontal-img">
+                    <img src="imagenes/imagen/imagen2.jpg" alt="Ronda de Seguridad 1">
+                </div>
+                <div class="foto-info">
+                    <h3>Ronda Nocturna</h3>
+                    <p class="foto-descripcion">Patrullaje nocturno para garantizar la seguridad de la comunidad durante la noche.</p>
+                </div>
+            </div>
+            
+            <!-- Foto 2 - Horizontal -->
+            <div class="foto-card horizontal">
+                <div class="foto-img horizontal-img">
+                    <img src="imagenes/imagen/imagen1.jpg" alt="Ronda de Seguridad">
+                </div>
+                <div class="foto-info">
+                    <h3>Vigilancia Diurna</h3>
+                    <p class="foto-descripcion">Control y vigilancia durante la noche en zonas de mayor riesgo.</p>
+                </div>
+            </div>
+            
+            <!-- Foto 3 - Horizontal -->
+            <div class="foto-card horizontal">
+                <div class="foto-img horizontal-img">
+                    <img src="imagenes/imagen/imagen4.jpg" alt="Ronda de Seguridad 3">
+                </div>
+                <div class="foto-info">
+                    <h3>Patrullaje Rural</h3>
+                    <p class="foto-descripcion">Rondas en áreas rurales para proteger a nuestros ciudadanos.</p>
+                </div>
+            </div>
+            
+            <!-- Foto 4 - Horizontal -->
+            <div class="foto-card horizontal">
+                <div class="foto-img horizontal-img">
+                    <img src="imagenes/imagen/imagenG.jpg" alt="Ronda de Seguridad 4">
+                </div>
+                <div class="foto-info">
+                    <h3>Ronderos en Acción</h3>
+                    <p class="foto-descripcion">RONDEROS EN ACCIÓN</p>
+                </div>
+            </div>
+            
+            <!-- Foto 5 - Horizontal -->
+            <div class="foto-card horizontal">
+                <div class="foto-img horizontal-img">
+                    <img src="imagenes/imagen/imagen6.jpg" alt="Ronda de Seguridad 5">
+                </div>
+                <div class="foto-info">
+                    <h3>Ronda Vecinal</h3>
+                    <p class="foto-descripcion">Patrullaje coordinado con vecinos en zonas residenciales.</p>
+                </div>
+            </div>
+            
+            <!-- Foto 6 - Vertical (ocupa más espacio) -->
+            <div class="foto-card vertical">
+                <div class="foto-img vertical-img">
+                    <img src="imagenes/imagen/imagen7.jpg" alt="Ronda de Seguridad 6">
+                </div>
+                <div class="foto-info">
+                    <h3>Control de Acceso</h3>
+                    <p class="foto-descripcion">Supervisión de entradas y salidas en puntos estratégicos.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contador-rondas" id="contador-rondas" style="text-align: center; margin-top: 20px;">
+            Mostrando <span id="rondas-visibles">6</span> actividades de seguridad
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN DE VIDEOS EN HORIZONTAL -->
+    <section id="videos-rondas">
+        <div class="videos-header">
+            <h2><i class="fas fa-video"></i> VIDEOS DE LAS RONDAS CAMPESINAS</h2>
+            <p>Mira nuestros videos para conocer más sobre el trabajo que realizamos en las Rondas Campesinas de la Región Loreto.</p>
+        </div>
+        
+        <div class="videos-container">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <!-- REEMPLAZA "videos/video1.mp4" CON LA RUTA DE TU VIDEO -->
+                    <video id="video1" controls poster="imagenes/rondas/video-poster1.jpg">
+                        <source src="VIDEOS/video1.mp4" type="video/mp4">
+                        <source src="videos/video1.webm" type="video/webm">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <div class="video-controls">
+                        
+                        <span class="video-time" id="time1">0:00 / 0:00</span>
+                        <button onclick="toggleMute('video1')" id="muteBtn1">🔊</button>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>DESFILE</h3>
+                    <p>Desfile de nuestros Ronderos.</p>
+                </div>
+            </div>
+            
+            <!-- Video 2 -->
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <!-- REEMPLAZA "videos/video2.mp4" CON LA RUTA DE TU VIDEO -->
+                    <video id="video2" controls poster="imagenes/rondas/video-poster2.jpg">
+                        <source src="videos/video2.mp4" type="video/mp4">
+                        <source src="videos/video2.webm" type="video/webm">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                    <div class="video-controls">
+                    
+                        <span class="video-time" id="time2">0:00 / 0:00</span>
+                        <button onclick="toggleMute('video2')" id="muteBtn2">🔊</button>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h3>CASTIGO FISICO</h3>
+                    <p>.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+         
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto">
+        <h2 class="section-title">Contáctanos</h2>
+        <div class="contacto-container">
+            <div class="info-contacto">
+                <h3>Información de Contacto</h3>
+                <div class="contacto-item">
+                    <div class="contacto-icon">📍</div>
+                    <div>
+                        <p><strong>Dirección:</strong><br>Centro Poblado Peña Negra (calle unión progreso MZ H Lt 18) (Carretera IQ: Nauta San Juan Bautista)</p>
+                    </div>
+                </div>
+                <div class="contacto-item">
+                    <div class="contacto-icon">📞</div>
+                    <div>
+                        <p><strong>Teléfono:</strong><br>+51 921 834 990</p>
+                    </div>
+                </div>
+                <div class="contacto-item">
+                    <div class="contacto-icon">✉️</div>
+                    <div>
+                        <p><strong>Email:</strong><br>regionloretorondascampesinas@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contacto-item">
+                    <div class="contacto-icon">🕒</div>
+                    <div>
+                        <p><strong>Horario de Atención:</strong><br>Lunes a Viernes: 8:00 am - 7:00 pm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-contacto">
+                <h3>Envíanos un Mensaje</h3>
+                <div id="mensaje-alerta"></div>
+                <form id="formulario-contacto">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="asunto">Asunto</label>
+                        <input type="text" id="asunto" name="asunto" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">RONDAS CAMPESINAS DE LA REGIÓN LORETO</div>
+            <div class="footer-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#rondas-seguridad">Rondas de Seguridad</a>
+                <a href="#videos-rondas">Videos</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <div class="footer-social">
+                <!-- SOLO FACEBOOK Y TIKTOK - REEMPLAZA CON TUS ENLACES REALES -->
+                <a href="https://www.facebook.com/share/17ivgFA22j/" target="_blank" class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.tiktok.com/@rondascampesinas?_r=1&_t=ZS-93DAGPvE60g" target="_blank" class="social-icon tiktok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Rondas Campesinas de la REGIÓN LORETO. WA tiene todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para el menú móvil
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+            
+            menuToggle.addEventListener('click', function() {
+                menu.classList.toggle('active');
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            const menuLinks = document.querySelectorAll('.menu a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        menu.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Animación de banderas peruanas cayendo
+            function crearBanderas() {
+                const container = document.getElementById('banderasContainer');
+                const numBanderas = 15;
+                
+                for (let i = 0; i < numBanderas; i++) {
+                    const bandera = document.createElement('div');
+                    bandera.className = 'bandera';
+                    
+                    const left = Math.random() * 100;
+                    const duration = 5 + Math.random() * 10;
+                    const delay = Math.random() * 5;
+                    
+                    bandera.style.left = `${left}%`;
+                    bandera.style.animationDuration = `${duration}s`;
+                    bandera.style.animationDelay = `${delay}s`;
+                    
+                    container.appendChild(bandera);
+                }
+            }
+            
+            crearBanderas();
+
+            // Manejo del formulario de contacto
+            const formulario = document.getElementById('formulario-contacto');
+            const mensajeAlerta = document.getElementById('mensaje-alerta');
+
+            formulario.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                mostrarAlerta('Enviando mensaje...', 'info');
+                
+                const formData = new FormData(formulario);
+                const datos = {
+                    nombre: formData.get('nombre'),
+                    email: formData.get('email'),
+                    telefono: formData.get('telefono'),
+                    asunto: formData.get('asunto'),
+                    mensaje: formData.get('mensaje')
+                };
+                
+                enviarCorreo(datos);
+            });
+
+            function enviarCorreo(datos) {
+                const formspreeURL = 'https://formspree.io/f/xykkjboe';
+                
+                fetch(formspreeURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        nombre: datos.nombre,
+                        email: datos.email,
+                        telefono: datos.telefono,
+                        asunto: datos.asunto,
+                        mensaje: datos.mensaje,
+                        _replyto: datos.email,
+                        _subject: `Mensaje de contacto: ${datos.asunto}`
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        mostrarAlerta('¡Mensaje enviado correctamente! Nos pondremos en contacto contigo pronto.', 'success');
+                        formulario.reset();
+                    } else {
+                        throw new Error('Error al enviar el mensaje');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    mostrarAlerta('Error al enviar el mensaje. Por favor, intenta nuevamente o contacta directamente a regionloretorondascampesinas@gmail.com', 'error');
+                });
+            }
+
+            function mostrarAlerta(mensaje, tipo) {
+                let clase = '';
+                switch(tipo) {
+                    case 'success':
+                        clase = 'alert-success';
+                        break;
+                    case 'error':
+                        clase = 'alert-error';
+                        break;
+                    default:
+                        clase = 'alert-info';
+                }
+                
+                mensajeAlerta.innerHTML = `<div class="alert ${clase}">${mensaje}</div>`;
+                
+                setTimeout(() => {
+                    mensajeAlerta.innerHTML = '';
+                }, 5000);
+            }
+
+            // Contador de rondas
+            const contadorRondas = document.getElementById('rondas-visibles');
+            const rondasCards = document.querySelectorAll('.foto-card');
+            contadorRondas.textContent = rondasCards.length;
+
+            // Efecto de animación al cargar
+            const rondasSection = document.getElementById('rondas-seguridad');
+            const videosSection = document.getElementById('videos-rondas');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Configurar animación para ambas secciones
+            [rondasSection, videosSection].forEach(section => {
+                if (section) {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(20px)';
+                    section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    observer.observe(section);
+                }
+            });
+            
+            // Funciones para controlar videos locales
+            function togglePlayPause(videoId) {
+                const video = document.getElementById(videoId);
+                const playBtn = document.getElementById('playBtn' + videoId.slice(-1));
+                
+                if (video.paused) {
+                    video.play();
+                    playBtn.innerHTML = '⏸';
+                } else {
+                    video.pause();
+                    playBtn.innerHTML = '▶';
+                }
+            }
+            
+            function toggleMute(videoId) {
+                const video = document.getElementById(videoId);
+                const muteBtn = document.getElementById('muteBtn' + videoId.slice(-1));
+                
+                video.muted = !video.muted;
+                muteBtn.innerHTML = video.muted ? '🔇' : '🔊';
+            }
+            
+            // Actualizar tiempo de video
+            function updateTime(videoId) {
+                const video = document.getElementById(videoId);
+                const timeDisplay = document.getElementById('time' + videoId.slice(-1));
+                
+                const currentTime = formatTime(video.currentTime);
+                const duration = formatTime(video.duration);
+                timeDisplay.textContent = `${currentTime} / ${duration}`;
+            }
+            
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+            
+            // Inicializar controles de video
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.addEventListener('timeupdate', function() {
+                    updateTime(this.id);
+                });
+                
+                video.addEventListener('loadedmetadata', function() {
+                    updateTime(this.id);
+                });
+                
+                video.addEventListener('play', function() {
+                    document.getElementById('playBtn' + this.id.slice(-1)).innerHTML = '⏸';
+                });
+                
+                video.addEventListener('pause', function() {
+                    document.getElementById('playBtn' + this.id.slice(-1)).innerHTML = '▶';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
